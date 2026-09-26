@@ -205,11 +205,17 @@ body.ready .arch{transform:none;opacity:1}
 .paws{position:absolute;inset:0;pointer-events:none}
 .paw{position:absolute;width:30px;color:var(--latte);opacity:0;animation:pawfade 6s ease-in-out infinite}
 @keyframes pawfade{10%,55%{opacity:.9}80%,100%{opacity:0}}
-.maxi .inner{position:relative;max-width:640px;margin:0 auto;padding:0 20px}
+.maxi .inner{position:relative;max-width:860px;margin:0 auto;padding:0 20px}
 .maxi .h2{margin:.9rem 0 1.2rem}
-.maxi p{color:var(--mocha);font-size:1.08rem}
-.maxi-card{margin:2.6rem auto 0;display:inline-flex;flex-direction:column;align-items:center;gap:18px;background:var(--cream);padding:34px 40px;border-radius:24px;box-shadow:0 30px 60px -36px rgba(58,40,29,.5)}
-.pup{position:relative;width:150px;height:150px}
+.maxi p{color:var(--mocha);font-size:1.08rem;max-width:620px;margin-inline:auto}
+.maxi-duo{display:flex;justify-content:center;align-items:center;gap:clamp(28px,5vw,56px);margin-top:2.8rem;flex-wrap:wrap}
+.maxi-photo{background:#fff;padding:12px 12px 48px;width:min(290px,78vw);transform:rotate(-4deg);box-shadow:0 30px 60px -30px rgba(58,40,29,.55);position:relative;transition:transform .6s var(--ease)}
+.maxi-photo:hover{transform:rotate(-1deg) translateY(-4px)}
+.maxi-photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 35%}
+.maxi-photo figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--script);font-size:1.6rem;color:var(--cocoa)}
+.maxi-photo::before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:26px;margin-left:-45px;background:rgba(214,191,159,.75);transform:rotate(3deg)}
+.maxi-card{margin:0;display:inline-flex;flex-direction:column;align-items:center;gap:18px;background:var(--cream);padding:34px 40px;border-radius:24px;box-shadow:0 30px 60px -36px rgba(58,40,29,.5)}
+.pup{position:relative;width:190px;height:190px}
 .pup svg{width:100%;height:100%}
 .pup .tail{transform-origin:106px 108px;transform-box:view-box;animation:wag .5s ease-in-out infinite alternate;animation-play-state:paused}
 .pup.happy .tail{animation-play-state:running}
@@ -462,25 +468,27 @@ footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26e
     <div class="eyebrow reveal">Un mensaje peludo</div>
     <h2 class="h2 reveal d1">Maxi también<br><em>te felicita</em></h2>
     <p class="reveal d2">Para Maxi, su pomerania más consentido y esponjoso, eres la persona favorita del universo: la que llega a casa, la de los paseos y la de las mejores caricias. Hoy él también quiere celebrar.</p>
-    <div class="maxi-card reveal d3">
+    <div class="maxi-duo">
+    <figure class="maxi-photo reveal d3"><img src="img/maxi.jpg" alt="Maxi, el pomerania de Yolo" loading="lazy"><figcaption>El mero Maxi</figcaption></figure>
+    <div class="maxi-card reveal d4">
       <div class="pup" id="pup">
         <div class="bubble" id="bubble">¡Guau!</div>
         <svg viewBox="0 0 150 150" aria-label="Dibujo de Maxi, un pomerania">
           <ellipse cx="76" cy="140" rx="46" ry="6" fill="#e8dac5"/>
-          <g class="tail" fill="#e6bb85"><circle cx="110" cy="100" r="13"/><circle cx="121" cy="88" r="12"/><circle cx="125" cy="75" r="10"/><circle cx="119" cy="65" r="8"/><circle cx="114" cy="84" r="9" fill="#f1d3a8"/></g>
-          <ellipse cx="80" cy="112" rx="34" ry="24" fill="#d9a56c"/>
-          <g fill="#d9a56c"><circle cx="52" cy="112" r="12"/><circle cx="100" cy="116" r="12"/><circle cx="78" cy="128" r="12"/></g>
-          <rect x="58" y="122" width="11" height="16" rx="5.5" fill="#c9924f"/>
-          <rect x="88" y="122" width="11" height="16" rx="5.5" fill="#c9924f"/>
-          <g fill="#e6bb85"><circle cx="104" cy="62" r="13"/><circle cx="99.7" cy="78" r="13"/><circle cx="88" cy="89.7" r="13"/><circle cx="72" cy="94" r="13"/><circle cx="56" cy="89.7" r="13"/><circle cx="44.3" cy="78" r="13"/><circle cx="40" cy="62" r="13"/><circle cx="44.3" cy="46" r="13"/><circle cx="56" cy="34.3" r="13"/><circle cx="72" cy="30" r="13"/><circle cx="88" cy="34.3" r="13"/><circle cx="99.7" cy="46" r="13"/></g>
-          <g fill="#f1d3a8"><circle cx="62" cy="92" r="9"/><circle cx="72" cy="97" r="9"/><circle cx="82" cy="92" r="9"/></g>
-          <path d="M46 38 53 12 68 30Z" fill="#c9924f"/><path d="M98 38 91 12 76 30Z" fill="#c9924f"/>
-          <path d="M52 32 55 19 62 29Z" fill="#f1d3a8"/><path d="M92 32 89 19 82 29Z" fill="#f1d3a8"/>
-          <circle cx="72" cy="60" r="27" fill="#d9a56c"/>
-          <ellipse cx="72" cy="73" rx="12" ry="9.5" fill="#f5e4c8"/>
-          <circle cx="61" cy="57" r="4.8" fill="#2e1f16"/><circle cx="83" cy="57" r="4.8" fill="#2e1f16"/>
+          <g class="tail" fill="#ead0a4"><circle cx="110" cy="100" r="13"/><circle cx="121" cy="88" r="12"/><circle cx="125" cy="75" r="10"/><circle cx="119" cy="65" r="8"/><circle cx="114" cy="84" r="9" fill="#f5e6c8"/></g>
+          <ellipse cx="80" cy="112" rx="34" ry="24" fill="#dfbc8a"/>
+          <g fill="#dfbc8a"><circle cx="52" cy="112" r="12"/><circle cx="100" cy="116" r="12"/><circle cx="78" cy="128" r="12"/></g>
+          <rect x="58" y="122" width="11" height="16" rx="5.5" fill="#d2ad7b"/>
+          <rect x="88" y="122" width="11" height="16" rx="5.5" fill="#d2ad7b"/>
+          <g fill="#ead0a4"><circle cx="104" cy="62" r="13"/><circle cx="99.7" cy="78" r="13"/><circle cx="88" cy="89.7" r="13"/><circle cx="72" cy="94" r="13"/><circle cx="56" cy="89.7" r="13"/><circle cx="44.3" cy="78" r="13"/><circle cx="40" cy="62" r="13"/><circle cx="44.3" cy="46" r="13"/><circle cx="56" cy="34.3" r="13"/><circle cx="72" cy="30" r="13"/><circle cx="88" cy="34.3" r="13"/><circle cx="99.7" cy="46" r="13"/></g>
+          <g fill="#f5e6c8"><circle cx="62" cy="92" r="9"/><circle cx="72" cy="97" r="9"/><circle cx="82" cy="92" r="9"/></g>
+          <path d="M46 38 53 12 68 30Z" fill="#d2ad7b"/><path d="M98 38 91 12 76 30Z" fill="#d2ad7b"/>
+          <path d="M52 32 55 19 62 29Z" fill="#e7a79b"/><path d="M92 32 89 19 82 29Z" fill="#e7a79b"/>
+          <g fill="#ead0a4"><circle cx="46" cy="70" r="9"/><circle cx="98" cy="70" r="9"/></g><circle cx="72" cy="60" r="27" fill="#dfbc8a"/>
+          <ellipse cx="72" cy="73" rx="12" ry="9.5" fill="#f3e3c6"/>
+          <circle cx="61" cy="57" r="5.4" fill="#1f1512"/><circle cx="83" cy="57" r="5.4" fill="#1f1512"/>
           <circle cx="62.6" cy="55.4" r="1.5" fill="#fff"/><circle cx="84.6" cy="55.4" r="1.5" fill="#fff"/>
-          <ellipse cx="72" cy="68.5" rx="4.2" ry="3.2" fill="#2e1f16"/>
+          <ellipse cx="72" cy="75" rx="7" ry="4.2" fill="#5a4032" opacity=".55"/><ellipse cx="72" cy="68.5" rx="4.6" ry="3.4" fill="#3a2a22"/>
           <path d="M67 75c2.5 3 7.5 3 10 0" stroke="#2e1f16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
           <path d="M70 77.5c0 4 4 4 4 0" fill="#e58f8f"/>
           <circle cx="54" cy="66" r="3.5" fill="#e8a37e" opacity=".5"/><circle cx="90" cy="66" r="3.5" fill="#e8a37e" opacity=".5"/>
@@ -492,6 +500,7 @@ footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26e
         Darle una galleta a Maxi
       </button>
       <div class="treats" id="treats">Maxi está esperando…</div>
+    </div>
     </div>
   </div>
 </section>
@@ -707,7 +716,7 @@ const PHOTOS = [
   ['6.jpg','Las mejores risas'],['12.jpg','Noche de gala con Raúl'],['5.jpg','Tailandia'],
   ['17.jpg','Rock and roll'],['10.jpg','Todas juntas'],['11.jpg','Tardes bonitas'],
   ['9.jpg','En primera fila'],['14.jpg','Pizza en familia'],['13.jpg','Sol, arena y Raúl'],
-  ['15.jpg','Raíces'],['4.jpg','Bajo el papel picado'],['1.jpg','Así, sonriendo'],['19.jpg','Cielo azul']
+  ['15.jpg','Raíces'],['4.jpg','Bajo el papel picado'],['1.jpg','Así, sonriendo'],['19.jpg','Cielo azul'],['maxi.jpg','Maxi, el consentido']
 ];
 const mas = $('#masonry');
 mas.innerHTML = PHOTOS.map(([f, c], i) =>
