@@ -1,7 +1,7 @@
 // Tiny static server for local preview (supports Range requests for video).
 const http = require('http'), fs = require('fs'), path = require('path');
 const root = __dirname, port = process.env.PORT || 4650;
-const types = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.mp4': 'video/mp4', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.ttf': 'font/ttf' };
+const types = { '.html': 'text/html; charset=utf-8', '.jpg': 'image/jpeg', '.mp4': 'video/mp4', '.mp3': 'audio/mpeg', '.js': 'text/javascript', '.css': 'text/css', '.svg': 'image/svg+xml', '.png': 'image/png', '.ttf': 'font/ttf' };
 http.createServer((req, res) => {
   // CORS so the hosting file manager can pull files during upload
   res.setHeader('Access-Control-Allow-Origin', '*'); res.setHeader('Access-Control-Allow-Private-Network', 'true');

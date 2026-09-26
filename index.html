@@ -276,6 +276,18 @@ footer{background:var(--espresso);color:var(--latte);text-align:center;padding:5
 footer .sig{font-family:var(--script);font-size:clamp(2rem,5vw,2.8rem);color:var(--sand);line-height:1.1}
 footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;opacity:.7}
 
+/* ============ MUSIC ============ */
+.music{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:85;display:inline-flex;align-items:center;gap:10px;font-size:.72rem;letter-spacing:.18em;font-weight:500;text-transform:uppercase;padding:11px 18px 11px 14px;border-radius:999px;background:rgba(46,31,22,.88);color:var(--sand);box-shadow:0 10px 24px rgba(46,31,22,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;translate:0 12px;pointer-events:none;transition:opacity .5s var(--ease),translate .5s var(--ease),transform .2s}
+.music.show{opacity:1;translate:0 0;pointer-events:auto}
+.music:active{transform:scale(.96)}
+.eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
+.eq i{width:3px;height:30%;background:var(--gold);border-radius:1px}
+.music.playing .eq i{animation:eq .9s ease-in-out infinite alternate}
+.music.playing .eq i:nth-child(2){animation-delay:-.3s;animation-duration:.7s}
+.music.playing .eq i:nth-child(3){animation-delay:-.6s;animation-duration:1.1s}
+.music.playing .eq i:nth-child(4){animation-delay:-.15s;animation-duration:.8s}
+@keyframes eq{from{height:20%}to{height:100%}}
+
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:99;width:100%;height:100%}
 
 /* ============ RESPONSIVE ============ */
@@ -332,6 +344,8 @@ footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26e
 </div>
 
 <canvas id="confetti"></canvas>
+<button class="music" id="musicBtn" aria-pressed="false" aria-label="Reproducir música"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Música</span></button>
+<audio id="song" src="audio/rock-dj-90s.mp3" preload="auto" playsinline></audio>
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="inicio">
@@ -601,6 +615,44 @@ function loop(){
   raf = parts.length ? requestAnimationFrame(loop) : (cx.clearRect(0, 0, cv.width, cv.height), null);
 }
 
+/* ---------- music (needs a user gesture to start) ---------- */
+const song = $('#song'), musicBtn = $('#musicBtn');
+let wantMusic = false, fading = null;
+function fadeTo(target, ms, done){
+  cancelAnimationFrame(fading);
+  const from = song.volume, t0 = performance.now();
+  (function step(now){
+    const k = Math.min((now - t0) / ms, 1); song.volume = from + (target - from) * k;
+    if (k < 1) fading = requestAnimationFrame(step); else done && done();
+  })(t0);
+}
+function syncBtn(){
+  musicBtn.classList.add('show');
+  musicBtn.classList.toggle('playing', wantMusic);
+  musicBtn.setAttribute('aria-pressed', wantMusic);
+  musicBtn.setAttribute('aria-label', wantMusic ? 'Pausar música' : 'Reproducir música');
+}
+function playMusic(){
+  wantMusic = true; song.volume = 0;
+  song.play().then(() => fadeTo(.85, 1800)).catch(() => { wantMusic = false; syncBtn(); });
+  syncBtn();
+}
+function stopMusic(){ wantMusic = false; fadeTo(0, 400, () => song.pause()); syncBtn(); }
+musicBtn.addEventListener('click', () => wantMusic ? stopMusic() : playMusic());
+// soft loop: fade out the last 2.5s of the 90s clip, then restart with a fade in
+song.addEventListener('timeupdate', () => {
+  if (wantMusic && song.duration && song.duration - song.currentTime < 2.5 && !song.dataset.out){
+    song.dataset.out = 1; fadeTo(0, 2300);
+  }
+});
+song.addEventListener('ended', () => {
+  delete song.dataset.out;
+  if (wantMusic){ song.currentTime = 0; song.play().then(() => fadeTo(.85, 1500)).catch(() => {}); }
+});
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) song.pause(); else if (wantMusic) song.play().catch(() => {});
+});
+
 /* ---------- intro ---------- */
 const intro = $('#intro'), env = $('#envelope');
 function start(){
@@ -611,9 +663,16 @@ function start(){
 function openEnv(){
   if (env.classList.contains('open')) return;
   env.classList.add('open');
+  playMusic();
   setTimeout(() => { burst(innerWidth / 2, innerHeight / 2, 220, 1.1); intro.classList.add('gone'); start(); }, 1300);
 }
-if (new URLSearchParams(location.search).has('open')){ intro.remove(); start(); }
+if (new URLSearchParams(location.search).has('open')){
+  intro.remove(); start(); syncBtn();
+  addEventListener('pointerdown', function first(e){
+    removeEventListener('pointerdown', first);
+    if (!wantMusic && !musicBtn.contains(e.target)) playMusic();
+  });
+}
 else {
   env.addEventListener('click', openEnv);
   env.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnv(); } });
