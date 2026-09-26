@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Feliz cumpleaños, Yolo!</title>
+<meta name="description" content="Una sorpresa para Yolo Nava: mamá de cuatro, reina del gym y la persona favorita de Maxi.">
+<meta property="og:title" content="¡Feliz cumpleaños, Yolo!">
+<meta property="og:description" content="Una sorpresa hecha con mucho cariño.">
+<meta property="og:image" content="img/4.jpg">
+<meta name="theme-color" content="#3a281d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%236b4a35'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='34' fill='%23efe4d4'%3EY%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --espresso:#2e1f16;
+  --cocoa:#5a3d2b;
+  --mocha:#7a5540;
+  --caramel:#b0825a;
+  --latte:#d6bf9f;
+  --sand:#e8dac5;
+  --beige:#f1e7d8;
+  --cream:#faf5ec;
+  --gold:#c9a36a;
+  --caramel-ink:#7a5132;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --script:'Pinyon Script',cursive;
+  --sans:'Jost',system-ui,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--espresso);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--caramel);color:var(--cream)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.06;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+.eyebrow{font-family:var(--sans);font-size:.74rem;letter-spacing:.32em;text-transform:uppercase;font-weight:500;color:var(--caramel-ink)}
+.h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;letter-spacing:-.01em}
+.h2 em{font-family:var(--script);font-style:normal;font-weight:400;color:var(--caramel);font-size:1.15em;line-height:.8}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+/* ============ INTRO / ENVELOPE ============ */
+#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 40%,#4a3326 0%,var(--espresso) 70%);transition:opacity 1s var(--ease),visibility 1s}
+#intro.gone{opacity:0;visibility:hidden}
+.intro-inner{text-align:center;color:var(--beige);padding:20px}
+.intro-inner .eyebrow{color:var(--latte);opacity:.8}
+.intro-title{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4.5vw,2.4rem);margin:.4rem 0 2.2rem;font-weight:400}
+.envelope{position:relative;width:min(340px,82vw);aspect-ratio:1.5;margin:0 auto;perspective:900px;cursor:pointer}
+.env-back{position:absolute;inset:0;background:var(--sand);border-radius:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.env-card{position:absolute;left:7%;right:7%;top:8%;bottom:8%;background:var(--cream);border-radius:4px;display:grid;place-items:center;transition:transform 1s var(--ease) .45s;z-index:1}
+.env-card span{font-family:var(--script);font-size:clamp(2rem,8vw,2.8rem);color:var(--cocoa)}
+.env-front{position:absolute;inset:0;z-index:2;border-radius:6px;overflow:hidden;pointer-events:none}
+.env-front::before,.env-front::after{content:"";position:absolute;bottom:0;width:60%;height:100%;background:var(--latte)}
+.env-front::before{left:0;clip-path:polygon(0 0,100% 55%,100% 100%,0 100%);background:#dcc6a7}
+.env-front::after{right:0;clip-path:polygon(100% 0,0 55%,0 100%,100% 100%);background:#d2b996}
+.env-flap{position:absolute;left:0;right:0;top:0;height:62%;z-index:3;transform-origin:top;transition:transform .7s var(--ease),z-index 0s .35s}
+.env-flap::before{content:"";position:absolute;inset:0;background:#c9ad88;clip-path:polygon(0 0,100% 0,50% 100%);filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.seal{position:absolute;left:50%;top:100%;width:62px;height:62px;margin:-40px 0 0 -31px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8a5f45,var(--cocoa) 60%,#3e291c);display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.35),inset 0 0 0 4px rgba(255,255,255,.07);transition:opacity .3s}
+.seal span{font-family:var(--script);font-size:2.1rem;color:var(--sand);line-height:1;margin-top:4px}
+.envelope.open .env-flap{transform:rotateX(180deg);z-index:0}
+.envelope.open .seal{opacity:0}
+.envelope.open .env-card{transform:translateY(-58%)}
+.tap{margin-top:2.2rem;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--latte);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.envelope:not(.open):hover .env-flap{transform:rotateX(18deg)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;padding:110px 0 80px;background:linear-gradient(180deg,var(--beige) 0%,var(--cream) 100%);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(30px,5vw,80px);align-items:center}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;pointer-events:none}
+.blob.a{width:520px;height:520px;background:var(--latte);top:-160px;right:-120px}
+.blob.b{width:420px;height:420px;background:#e6cfae;bottom:-180px;left:-140px}
+.hero-top{display:flex;align-items:center;gap:14px;margin-bottom:1.6rem}
+.hero-top i{display:block;width:48px;height:1px;background:var(--caramel)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3rem,8.2vw,6.8rem);line-height:.9;letter-spacing:-.02em;color:var(--espresso)}
+.hero h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.hero h1 .l>span{display:inline-block;transform:translateY(105%);transition:transform 1.3s var(--ease)}
+.hero h1 .name{font-family:var(--script);font-weight:400;font-size:1.75em;color:var(--cocoa);line-height:.95;letter-spacing:0;padding-left:.12em}
+body.ready .hero h1 .l>span{transform:none}
+body.ready .hero h1 .l:nth-child(2)>span{transition-delay:.15s}
+body.ready .hero h1 .l:nth-child(3)>span{transition-delay:.3s}
+.hero p.lead{max-width:30rem;margin-top:1.8rem;font-size:clamp(1.02rem,1.5vw,1.15rem);color:var(--mocha)}
+.hero-cta{display:inline-flex;align-items:center;gap:12px;margin-top:2.4rem;padding:16px 28px;border-radius:999px;background:var(--espresso);color:var(--cream);font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .4s,transform .4s var(--ease)}
+.hero-cta:hover{background:var(--cocoa);transform:translateY(-2px)}
+.hero-cta svg{transition:transform .4s var(--ease)}
+.hero-cta:hover svg{transform:translateY(3px)}
+.hero-photo{position:relative;justify-self:center;width:min(420px,100%)}
+.arch{position:relative;aspect-ratio:3/4.1;border-radius:999px 999px 18px 18px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(58,40,29,.55);transform:scale(.94);opacity:0;transition:transform 1.6s var(--ease) .2s,opacity 1.2s var(--ease) .2s}
+body.ready .arch{transform:none;opacity:1}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.arch-outline{position:absolute;inset:-14px;border:1px solid var(--caramel);border-radius:999px 999px 26px 26px;opacity:.55;pointer-events:none}
+.badge{position:absolute;left:-46px;bottom:60px;width:132px;height:132px;border-radius:50%;background:var(--cream);box-shadow:0 18px 40px -16px rgba(58,40,29,.5);display:grid;place-items:center}
+.badge svg{position:absolute;inset:0;animation:spin 22s linear infinite}
+.badge b{font-family:var(--script);font-weight:400;font-size:2.6rem;color:var(--cocoa);line-height:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scroll-hint{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);width:1px;height:54px;background:linear-gradient(var(--caramel),transparent);overflow:hidden}
+.scroll-hint::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--espresso);animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{to{top:110%}}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--espresso);color:var(--sand);padding:22px 0;overflow:hidden;white-space:nowrap}
+.marquee .track{display:inline-flex;animation:marq 38s linear infinite}
+.marquee span{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);padding:0 28px;display:inline-flex;align-items:center;gap:56px}
+.marquee span::after{content:"✦";font-style:normal;font-size:.7em;color:var(--caramel)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ============ LETTER ============ */
+.letter-sec{padding:clamp(90px,14vw,170px) 0;background:var(--cream);position:relative}
+.letter-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,90px);align-items:center}
+.stack{position:relative;aspect-ratio:4/5;max-width:400px;justify-self:center;width:100%}
+.stack figure{position:absolute;background:#fff;padding:12px 12px 46px;box-shadow:0 22px 50px -24px rgba(58,40,29,.55);transition:transform .8s var(--ease)}
+.stack figure img{width:100%;aspect-ratio:1;object-fit:cover}
+.stack figcaption{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--script);font-size:1.4rem;color:var(--cocoa)}
+.stack .p1{width:72%;left:0;top:4%;transform:rotate(-7deg)}
+.stack .p2{width:72%;right:0;bottom:0;transform:rotate(5deg)}
+.stack:hover .p1{transform:rotate(-10deg) translate(-10px,-6px)}
+.stack:hover .p2{transform:rotate(8deg) translate(10px,6px)}
+.paper{position:relative;background:#fffdf8;padding:clamp(34px,5vw,64px);border-radius:4px;box-shadow:0 30px 70px -40px rgba(58,40,29,.5),0 0 0 1px rgba(176,130,90,.18)}
+.paper::before{content:"";position:absolute;inset:12px;border:1px solid rgba(176,130,90,.28);pointer-events:none}
+.paper h3{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,5vw,3.6rem);color:var(--cocoa);line-height:1;margin-bottom:1.4rem}
+.paper p{font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.32rem);line-height:1.65;color:#3d2a1f;margin-bottom:1.1rem}
+.paper p.sign{font-family:var(--script);font-size:clamp(1.8rem,3vw,2.2rem);color:var(--cocoa);margin:1.8rem 0 0;line-height:1.2}
+.paper p.sign small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--caramel-ink);margin-top:.5rem}
+
+/* ============ DAUGHTERS ============ */
+.hijas{padding:clamp(90px,12vw,150px) 0;background:var(--sand);position:relative;overflow:hidden}
+.hijas-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,70px)}
+.hijas-head p{max-width:26rem;color:var(--mocha);font-size:1.05rem}
+.hijas-feature{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 40px 90px -40px rgba(58,40,29,.6)}
+.hijas-feature img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 35%;transform:scale(1.08);transition:transform 2.4s var(--ease)}
+.hijas-feature.in img{transform:none}
+.hijas-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(46,31,22,.78))}
+.hijas-feature .cap{position:absolute;left:clamp(20px,4vw,48px);bottom:clamp(20px,4vw,44px);right:20px;z-index:1;color:var(--cream)}
+.hijas-feature .cap b{display:block;font-family:var(--script);font-weight:400;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1}
+.hijas-feature .cap span{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;opacity:.85}
+.hearts{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);margin-top:clamp(24px,4vw,40px)}
+.heart-card{background:var(--cream);border-radius:18px;padding:clamp(20px,2.6vw,30px);position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s}
+.heart-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -24px rgba(58,40,29,.5)}
+.heart-card .n{font-family:var(--serif);font-size:clamp(2.6rem,5vw,3.8rem);line-height:1;color:var(--caramel);font-weight:500}
+.heart-card h4{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:.6rem 0 .3rem}
+.heart-card p{font-size:.95rem;color:var(--mocha)}
+.heart-card svg{position:absolute;right:-14px;top:-14px;width:84px;opacity:.1;color:var(--cocoa)}
+
+/* ============ STATS ============ */
+.stats{padding:clamp(70px,10vw,110px) 0;background:var(--cream)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(122,85,64,.25);border-bottom:1px solid rgba(122,85,64,.25)}
+.stat{padding:clamp(26px,4vw,46px) 16px;text-align:center;border-right:1px solid rgba(122,85,64,.25)}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--serif);font-weight:500;font-size:clamp(2.8rem,6.5vw,5.2rem);line-height:1;color:var(--espresso)}
+.stat .k{margin-top:.6rem;font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--caramel-ink);font-weight:500}
+
+/* ============ NOTE FROM RODRI ============ */
+.note{position:relative;padding:clamp(90px,12vw,150px) 0;background:var(--beige);overflow:hidden}
+.note::before{content:"“";position:absolute;left:50%;top:clamp(10px,3vw,40px);transform:translateX(-50%);font-family:var(--serif);font-size:clamp(14rem,30vw,24rem);line-height:1;color:var(--latte);opacity:.55;pointer-events:none}
+.note-card{position:relative;max-width:760px;margin:0 auto;background:#fffdf8;border-radius:6px;padding:clamp(36px,6vw,72px) clamp(26px,6vw,80px);box-shadow:0 40px 80px -46px rgba(58,40,29,.55);text-align:center}
+.note-card::after{content:"";position:absolute;inset:0;transform:translate(12px,12px);border:1px solid var(--caramel);border-radius:6px;z-index:-1}
+.note-meta{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--caramel-ink);font-weight:500}
+.note-meta b{font-weight:600;color:var(--espresso)}
+.note-card h2{font-family:var(--script);font-weight:400;font-size:clamp(2.6rem,6vw,3.8rem);line-height:1.05;color:var(--cocoa);margin:1.4rem 0 1.6rem}
+.note-card p{font-family:var(--serif);font-size:clamp(1.18rem,1.9vw,1.38rem);line-height:1.7;color:#3d2a1f;margin-bottom:1.1rem}
+.note-card p strong{font-weight:600;color:var(--cocoa)}
+.note-sign{margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:6px}
+.note-sign span{font-family:var(--script);font-size:clamp(2.6rem,6vw,3.4rem);color:var(--cocoa);line-height:1}
+.note-sign small{font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;color:var(--caramel-ink)}
+.note-sign i{display:block;width:60px;height:1px;background:var(--caramel);margin-bottom:10px}
+
+/* ============ GYM ============ */
+.gym{position:relative;padding:clamp(90px,13vw,160px) 0;background:var(--espresso);color:var(--sand);overflow:hidden}
+.gym::before{content:"FUERZA";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--serif);font-weight:600;font-size:clamp(7rem,26vw,22rem);letter-spacing:-.03em;color:rgba(214,191,159,.045);white-space:nowrap;pointer-events:none}
+.gym-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+.gym .eyebrow{color:var(--gold)}
+.gym .h2{color:var(--cream);margin:.9rem 0 1.4rem}
+.gym .h2 em{color:var(--gold)}
+.gym p.lead{color:var(--latte);max-width:30rem;font-size:1.05rem}
+.lift{background:rgba(250,245,236,.04);border:1px solid rgba(214,191,159,.16);border-radius:26px;padding:clamp(26px,4vw,44px);text-align:center}
+.bar-wrap{position:relative;height:190px;display:grid;place-items:end center}
+.dumbbell{width:min(300px,86%);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.dumbbell.up{transform:translateY(-78px)}
+.floor{width:80%;height:2px;margin:6px auto 0;background:linear-gradient(90deg,transparent,rgba(214,191,159,.4),transparent)}
+.reps{display:flex;justify-content:center;gap:8px;margin:26px 0 18px}
+.reps i{width:26px;height:6px;border-radius:3px;background:rgba(214,191,159,.18);transition:background .4s}
+.reps i.on{background:var(--gold)}
+.wish{min-height:3.4em;font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2.4vw,1.55rem);color:var(--cream);display:grid;place-items:center;line-height:1.3}
+.wish.pop{animation:wishpop .6s var(--ease)}
+@keyframes wishpop{from{opacity:0;transform:translateY(10px)}}
+.btn-lift{margin-top:18px;padding:17px 34px;border-radius:999px;background:var(--gold);color:var(--espresso);font-weight:600;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;transition:transform .2s,background .3s;user-select:none;-webkit-tap-highlight-color:transparent}
+.btn-lift:hover{background:var(--latte)}
+.btn-lift:active{transform:scale(.95)}
+.gym-photos{display:flex;gap:14px;margin-top:2.2rem}
+.gym-photos img{width:50%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;filter:saturate(.9)}
+
+/* ============ MAXI ============ */
+.maxi{position:relative;padding:clamp(90px,12vw,150px) 0;background:var(--beige);overflow:hidden;text-align:center}
+.paws{position:absolute;inset:0;pointer-events:none}
+.paw{position:absolute;width:30px;color:var(--latte);opacity:0;animation:pawfade 6s ease-in-out infinite}
+@keyframes pawfade{10%,55%{opacity:.9}80%,100%{opacity:0}}
+.maxi .inner{position:relative;max-width:640px;margin:0 auto;padding:0 20px}
+.maxi .h2{margin:.9rem 0 1.2rem}
+.maxi p{color:var(--mocha);font-size:1.08rem}
+.maxi-card{margin:2.6rem auto 0;display:inline-flex;flex-direction:column;align-items:center;gap:18px;background:var(--cream);padding:34px 40px;border-radius:24px;box-shadow:0 30px 60px -36px rgba(58,40,29,.5)}
+.pup{position:relative;width:150px;height:150px}
+.pup svg{width:100%;height:100%}
+.pup .tail{transform-origin:106px 108px;transform-box:view-box;animation:wag .5s ease-in-out infinite alternate;animation-play-state:paused}
+.pup.happy .tail{animation-play-state:running}
+@keyframes wag{from{transform:rotate(-14deg)}to{transform:rotate(18deg)}}
+.bubble{position:absolute;left:78%;top:-18px;background:var(--espresso);color:var(--cream);font-family:var(--serif);font-style:italic;font-size:1.15rem;padding:8px 16px;border-radius:16px 16px 16px 4px;white-space:nowrap;opacity:0;transform:translateY(8px) scale(.9);transition:all .4s var(--ease);pointer-events:none}
+.bubble.show{opacity:1;transform:none}
+.btn-treat{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;border:1.5px solid var(--cocoa);color:var(--cocoa);font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;transition:all .3s}
+.btn-treat:hover{background:var(--cocoa);color:var(--cream)}
+.treats{font-size:.82rem;color:var(--caramel-ink);letter-spacing:.08em}
+.bone{position:fixed;width:34px;z-index:80;pointer-events:none;color:var(--caramel)}
+
+/* ============ GALLERY ============ */
+.gallery{padding:clamp(90px,12vw,160px) 0;background:var(--cream)}
+.gallery-head{text-align:center;margin-bottom:clamp(40px,6vw,70px)}
+.gallery-head .h2{margin-top:.8rem}
+.gallery-head p{color:var(--mocha);margin-top:1rem}
+.masonry{columns:4 250px;column-gap:clamp(14px,2vw,26px)}
+.pol{break-inside:avoid;margin-bottom:clamp(14px,2vw,26px);background:#fff;padding:10px 10px 0;box-shadow:0 18px 40px -24px rgba(58,40,29,.5);transition:transform .6s var(--ease),box-shadow .6s;cursor:zoom-in;display:block;width:100%;text-align:left}
+.pol:nth-child(3n){transform:rotate(1.4deg)}
+.pol:nth-child(3n+1){transform:rotate(-1.2deg)}
+.pol:hover{transform:rotate(0) translateY(-6px) scale(1.02);box-shadow:0 30px 50px -24px rgba(58,40,29,.6)}
+.pol img{width:100%;height:auto;background:var(--sand)}
+.pol span{display:block;font-family:var(--script);font-size:1.45rem;color:var(--cocoa);padding:6px 4px 10px;text-align:center;line-height:1.2}
+.lightbox{position:fixed;inset:0;z-index:95;background:rgba(30,20,14,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox figure{max-width:min(92vw,1000px);text-align:center}
+.lightbox img{max-height:80svh;width:auto;margin:0 auto;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lightbox figcaption{font-family:var(--script);font-size:1.9rem;color:var(--sand);margin-top:12px}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:54px;height:54px;border-radius:50%;background:rgba(250,245,236,.1);color:var(--cream);display:grid;place-items:center;transition:background .3s}
+.lb-btn:hover{background:rgba(250,245,236,.22)}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-close{position:absolute;top:18px;right:18px;width:46px;height:46px;border-radius:50%;background:rgba(250,245,236,.1);color:var(--cream);display:grid;place-items:center}
+
+/* ============ CAKE ============ */
+.cake-sec{position:relative;padding:clamp(90px,12vw,160px) 0 clamp(70px,9vw,110px);background:linear-gradient(180deg,var(--sand),var(--latte));text-align:center;overflow:hidden}
+.cake-sec .h2{margin:.9rem 0 1rem}
+.cake-sec>.wrap>p{color:var(--cocoa);max-width:34rem;margin:0 auto}
+.cake{position:relative;width:min(360px,86vw);margin:3rem auto 0}
+.cake svg{width:100%;overflow:visible}
+.candle{cursor:pointer}
+.flame{transform-origin:center bottom;transform-box:fill-box;animation:flick .18s ease-in-out infinite alternate;transition:opacity .35s,transform .35s}
+@keyframes flick{from{transform:scale(1,1) rotate(-2deg)}to{transform:scale(.92,1.08) rotate(2deg)}}
+.candle.out .flame{opacity:0;animation:none;transform:scale(0)}
+.smoke{opacity:0}
+.candle.out .smoke{animation:smoke 1.6s ease-out forwards}
+@keyframes smoke{0%{opacity:.7;transform:translateY(0)}100%{opacity:0;transform:translateY(-40px)}}
+.candle-labels{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:1.4rem;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cocoa)}
+.candle-labels span{padding:6px 12px;border:1px solid rgba(90,61,43,.3);border-radius:999px;transition:all .4s}
+.candle-labels span.done{background:var(--cocoa);color:var(--cream);border-color:var(--cocoa)}
+.btn-blow{margin-top:1.8rem;padding:17px 34px;border-radius:999px;background:var(--espresso);color:var(--cream);font-weight:500;font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;transition:background .3s,transform .3s var(--ease)}
+.btn-blow:hover{background:var(--cocoa);transform:translateY(-2px)}
+.final{max-height:0;opacity:0;overflow:hidden;transition:max-height 1.4s var(--ease),opacity 1.2s var(--ease) .3s}
+.final.show{max-height:600px;opacity:1}
+.final h3{font-family:var(--script);font-weight:400;font-size:clamp(3rem,9vw,5.6rem);color:var(--espresso);line-height:1;margin-top:2.4rem}
+.final p{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--cocoa);max-width:34rem;margin:1rem auto 0}
+
+footer{background:var(--espresso);color:var(--latte);text-align:center;padding:56px 20px 64px}
+footer .sig{font-family:var(--script);font-size:clamp(2rem,5vw,2.8rem);color:var(--sand);line-height:1.1}
+footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26em;text-transform:uppercase;opacity:.7}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99;width:100%;height:100%}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .hero{padding-top:90px}
+  .hero .wrap,.letter-grid,.gym-grid{grid-template-columns:1fr}
+  .hero-photo{width:min(330px,82%);order:-1;margin-top:10px}
+  .badge{left:-30px;bottom:30px;width:104px;height:104px}
+  .badge b{font-size:2rem}
+  .hero-text{text-align:center}
+  .hero-top{justify-content:center}
+  .hero p.lead{margin-inline:auto}
+  .stack{max-width:320px}
+  .hearts{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid rgba(122,85,64,.25)}
+  .hijas-feature img{aspect-ratio:4/3}
+}
+@media (max-width:520px){
+  .wrap{width:calc(100% - 32px)}
+  .masonry{columns:2 140px}
+  .pol span{font-size:1.15rem}
+  .hearts{gap:10px}
+  .heart-card{padding:18px}
+  .heart-card h4{font-size:1.1rem}
+  .heart-card p{font-size:.88rem}
+  .maxi-card{padding:28px 22px}
+  .btn-treat{letter-spacing:.1em;padding:14px 20px;white-space:nowrap}
+  .bubble{left:auto;right:-10px;top:-40px}
+  .lb-btn{width:44px;height:44px;top:auto;bottom:22px;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ============ INTRO ============ -->
+<div id="intro" role="dialog" aria-label="Abrir sorpresa">
+  <div class="intro-inner">
+    <div class="eyebrow">Tienes una carta</div>
+    <p class="intro-title">Para la mamá más bonita</p>
+    <div class="envelope" id="envelope" tabindex="0" role="button" aria-label="Abrir el sobre">
+      <div class="env-back"></div>
+      <div class="env-card"><span>Yolo</span></div>
+      <div class="env-front"></div>
+      <div class="env-flap"><div class="seal"><span>Y</span></div></div>
+    </div>
+    <div class="tap">Toca para abrir</div>
+  </div>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="inicio">
+  <div class="blob a"></div><div class="blob b"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="hero-top"><i></i><span class="eyebrow">Hoy celebramos a</span><i></i></div>
+      <h1>
+        <span class="l"><span>¡Feliz</span></span>
+        <span class="l"><span>cumpleaños,</span></span>
+        <span class="l"><span class="name">Yolo!</span></span>
+      </h1>
+      <p class="lead reveal d2">Mamá de cuatro, dueña de Maxi, reina del gym y la persona que nunca, nunca se pierde un momento importante. Hoy el día es todo tuyo.</p>
+      <a href="#carta" class="hero-cta reveal d3">Empieza aquí
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1.5 7.5 7 13l5.5-5.5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+    </div>
+    <div class="hero-photo">
+      <div class="arch-outline"></div>
+      <div class="arch"><img src="img/4.jpg" alt="Yolo en un puente de madera bajo papel picado naranja"></div>
+      <div class="badge" aria-hidden="true">
+        <svg viewBox="0 0 132 132"><defs><path id="circ" d="M66,66 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs>
+          <text font-family="Jost" font-size="10.5" letter-spacing="3.2" fill="#7a5540" font-weight="500"><textPath href="#circ">MAMÁ · FUERTE · PRESENTE · ÚNICA · </textPath></text></svg>
+        <b>Y</b>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"></div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="marq"></div></div>
+
+<!-- ============ LETTER ============ -->
+<section class="letter-sec" id="carta">
+  <div class="wrap letter-grid">
+    <div class="stack reveal">
+      <figure class="p1"><img src="img/19.jpg" alt="Yolo con el cielo azul de fondo" loading="lazy"><figcaption>siempre tú</figcaption></figure>
+      <figure class="p2"><img src="img/1.jpg" alt="Selfie de Yolo con chaleco azul tejido" loading="lazy"><figcaption>con esa sonrisa</figcaption></figure>
+    </div>
+    <article class="paper reveal d1">
+      <h3>Querida Yolo,</h3>
+      <p>Hoy queremos detener el mundo un momento para decirte lo que tal vez no te decimos lo suficiente: eres increíble.</p>
+      <p>Eres la que llega a cada evento, la que aplaude más fuerte, la que viaja al otro lado del mundo y todavía tiene energía para una foto con un tigre. La que se levanta temprano para entrenar y aun así tiene tiempo, paciencia y abrazos para todos.</p>
+      <p>Tus hijas crecieron viendo a una mujer fuerte, divertida y presente. Ese es el regalo más grande que les has dado, y el ejemplo que van a llevar toda la vida.</p>
+      <p>Que este nuevo año te traiga salud, risas, más viajes, más cafecitos, más récords en el gym y muchos, muchos momentos como los de estas fotos.</p>
+      <p class="sign">Con todo nuestro cariño<small>Tu familia y todos los que te queremos</small></p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ DAUGHTERS ============ -->
+<section class="hijas" id="hijas">
+  <div class="wrap">
+    <div class="hijas-head">
+      <div>
+        <div class="eyebrow reveal">Sus cuatro razones</div>
+        <h2 class="h2 reveal d1" style="margin-top:.8rem">Cuatro hijas,<br><em>un solo corazón</em></h2>
+      </div>
+      <p class="reveal d2">Graduaciones, proms, viajes, cenas, pizzas y selfies en la playa. Si es importante para ellas, Yolo está ahí. Siempre en primera fila.</p>
+    </div>
+    <div class="hijas-feature reveal" id="feat">
+      <img src="img/16.jpg" alt="Yolo sentada rodeada de sus cuatro hijas" loading="lazy">
+      <div class="cap"><b>Mis niñas</b><span>El mejor equipo del mundo</span></div>
+    </div>
+    <div class="hearts">
+      <div class="heart-card reveal"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2.3 4.5 6 4.5c2.2 0 3.5 1.2 6 3.6 2.5-2.4 3.8-3.6 6-3.6 3.7 0 5.6 3.9 4 7.2C19.5 16.4 12 21 12 21z"/></svg><div class="n">01</div><h4>Presente</h4><p>En cada partido, cada evento, cada foto.</p></div>
+      <div class="heart-card reveal d1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2.3 4.5 6 4.5c2.2 0 3.5 1.2 6 3.6 2.5-2.4 3.8-3.6 6-3.6 3.7 0 5.6 3.9 4 7.2C19.5 16.4 12 21 12 21z"/></svg><div class="n">02</div><h4>Aventurera</h4><p>De Tailandia a la playa, siempre lista.</p></div>
+      <div class="heart-card reveal d2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2.3 4.5 6 4.5c2.2 0 3.5 1.2 6 3.6 2.5-2.4 3.8-3.6 6-3.6 3.7 0 5.6 3.9 4 7.2C19.5 16.4 12 21 12 21z"/></svg><div class="n">03</div><h4>Divertida</h4><p>La primera en sacar la lengua en la foto.</p></div>
+      <div class="heart-card reveal d3"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2.3 4.5 6 4.5c2.2 0 3.5 1.2 6 3.6 2.5-2.4 3.8-3.6 6-3.6 3.7 0 5.6 3.9 4 7.2C19.5 16.4 12 21 12 21z"/></svg><div class="n">04</div><h4>Incondicional</h4><p>Su amor no tiene horario ni límite.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="v" data-count="4">0</div><div class="k">Hijas</div></div>
+    <div class="stat reveal d1"><div class="v" data-count="1">0</div><div class="k">Maxi</div></div>
+    <div class="stat reveal d2"><div class="v" data-count="365">0</div><div class="k">Días presente</div></div>
+    <div class="stat reveal d3"><div class="v">∞</div><div class="k">Abrazos</div></div>
+  </div>
+</section>
+
+<!-- ============ NOTE FROM RODRI ============ -->
+<section class="note" id="rodri">
+  <div class="wrap">
+    <article class="note-card reveal">
+      <div class="note-meta"><span>De: <b>Rodri</b></span><span>Para: <b>Yolo</b></span></div>
+      <h2>A la mejor suegra</h2>
+      <p>Yolo, ¡feliz cumpleaños! Hoy quiero aprovechar para decirte algo que siento todos los días: tengo la suerte de tener a <strong>una gran suegra</strong>.</p>
+      <p>Gracias por siempre confiar en mí, y por confiarme a <strong>Regi</strong>, que sé que es de lo más valioso que tienes. Gracias por apoyarnos en todo lo que se nos ocurre hacer, por más loco que suene, y por echarnos porras en cada paso.</p>
+      <p>Desde el día que nos conocimos me trataste como parte de tu familia, y eso es algo que nunca voy a olvidar. Estoy muy agradecido de tenerte en mi vida.</p>
+      <p>Que este año te regrese todo el cariño que tú le das a los demás. Te quiero mucho.</p>
+      <div class="note-sign"><i></i><span>Rodri</span><small>Tu yerno</small></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ GYM ============ -->
+<section class="gym" id="gym">
+  <div class="wrap gym-grid">
+    <div>
+      <div class="eyebrow reveal">Modo gym: activado</div>
+      <h2 class="h2 reveal d1">Más fuerte<br><em>cada año</em></h2>
+      <p class="lead reveal d2">Disciplina, constancia y cero excusas. Yolo no solo entrena el cuerpo: entrena el ejemplo. Levanta la pesa y descubre los deseos que tenemos para ti este año.</p>
+      <div class="gym-photos reveal d3">
+        <img src="img/13.jpg" alt="Yolo y Raúl en la playa" loading="lazy">
+        <img src="img/12.jpg" alt="Yolo y Raúl en una noche de gala" loading="lazy">
+      </div>
+    </div>
+    <div class="lift reveal d2">
+      <div class="bar-wrap">
+        <svg class="dumbbell" id="dumbbell" viewBox="0 0 300 90" aria-hidden="true">
+          <rect x="40" y="40" width="220" height="10" rx="5" fill="#d6bf9f"/>
+          <rect x="18" y="14" width="26" height="62" rx="6" fill="#c9a36a"/>
+          <rect x="4" y="24" width="18" height="42" rx="5" fill="#b0825a"/>
+          <rect x="256" y="14" width="26" height="62" rx="6" fill="#c9a36a"/>
+          <rect x="278" y="24" width="18" height="42" rx="5" fill="#b0825a"/>
+          <rect x="120" y="38" width="60" height="14" rx="4" fill="#7a5540"/>
+        </svg>
+      </div>
+      <div class="floor"></div>
+      <div class="reps" id="reps"></div>
+      <div class="wish" id="wish">Toca el botón para hacer tu primera repetición</div>
+      <button class="btn-lift" id="btnLift">Levantar 💪</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAXI ============ -->
+<section class="maxi" id="maxi">
+  <div class="paws" id="paws"></div>
+  <div class="inner">
+    <div class="eyebrow reveal">Un mensaje peludo</div>
+    <h2 class="h2 reveal d1">Maxi también<br><em>te felicita</em></h2>
+    <p class="reveal d2">Para Maxi, su pomerania más consentido y esponjoso, eres la persona favorita del universo: la que llega a casa, la de los paseos y la de las mejores caricias. Hoy él también quiere celebrar.</p>
+    <div class="maxi-card reveal d3">
+      <div class="pup" id="pup">
+        <div class="bubble" id="bubble">¡Guau!</div>
+        <svg viewBox="0 0 150 150" aria-label="Dibujo de Maxi, un pomerania">
+          <ellipse cx="76" cy="140" rx="46" ry="6" fill="#e8dac5"/>
+          <g class="tail" fill="#e6bb85"><circle cx="110" cy="100" r="13"/><circle cx="121" cy="88" r="12"/><circle cx="125" cy="75" r="10"/><circle cx="119" cy="65" r="8"/><circle cx="114" cy="84" r="9" fill="#f1d3a8"/></g>
+          <ellipse cx="80" cy="112" rx="34" ry="24" fill="#d9a56c"/>
+          <g fill="#d9a56c"><circle cx="52" cy="112" r="12"/><circle cx="100" cy="116" r="12"/><circle cx="78" cy="128" r="12"/></g>
+          <rect x="58" y="122" width="11" height="16" rx="5.5" fill="#c9924f"/>
+          <rect x="88" y="122" width="11" height="16" rx="5.5" fill="#c9924f"/>
+          <g fill="#e6bb85"><circle cx="104" cy="62" r="13"/><circle cx="99.7" cy="78" r="13"/><circle cx="88" cy="89.7" r="13"/><circle cx="72" cy="94" r="13"/><circle cx="56" cy="89.7" r="13"/><circle cx="44.3" cy="78" r="13"/><circle cx="40" cy="62" r="13"/><circle cx="44.3" cy="46" r="13"/><circle cx="56" cy="34.3" r="13"/><circle cx="72" cy="30" r="13"/><circle cx="88" cy="34.3" r="13"/><circle cx="99.7" cy="46" r="13"/></g>
+          <g fill="#f1d3a8"><circle cx="62" cy="92" r="9"/><circle cx="72" cy="97" r="9"/><circle cx="82" cy="92" r="9"/></g>
+          <path d="M46 38 53 12 68 30Z" fill="#c9924f"/><path d="M98 38 91 12 76 30Z" fill="#c9924f"/>
+          <path d="M52 32 55 19 62 29Z" fill="#f1d3a8"/><path d="M92 32 89 19 82 29Z" fill="#f1d3a8"/>
+          <circle cx="72" cy="60" r="27" fill="#d9a56c"/>
+          <ellipse cx="72" cy="73" rx="12" ry="9.5" fill="#f5e4c8"/>
+          <circle cx="61" cy="57" r="4.8" fill="#2e1f16"/><circle cx="83" cy="57" r="4.8" fill="#2e1f16"/>
+          <circle cx="62.6" cy="55.4" r="1.5" fill="#fff"/><circle cx="84.6" cy="55.4" r="1.5" fill="#fff"/>
+          <ellipse cx="72" cy="68.5" rx="4.2" ry="3.2" fill="#2e1f16"/>
+          <path d="M67 75c2.5 3 7.5 3 10 0" stroke="#2e1f16" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M70 77.5c0 4 4 4 4 0" fill="#e58f8f"/>
+          <circle cx="54" cy="66" r="3.5" fill="#e8a37e" opacity=".5"/><circle cx="90" cy="66" r="3.5" fill="#e8a37e" opacity=".5"/>
+          <path d="M64 101l8-5 8 5-8 5z" fill="#5a3d2b"/><circle cx="72" cy="101" r="2.6" fill="#c9a36a"/>
+        </svg>
+      </div>
+      <button class="btn-treat" id="btnTreat">
+        <svg width="22" height="12" viewBox="0 0 34 18" fill="currentColor"><path d="M6 1a5 5 0 0 1 4.6 3h12.8A5 5 0 1 1 28 11a5 5 0 1 1-4.6 3H10.6A5 5 0 1 1 6 11a5 5 0 1 1 0-10z"/></svg>
+        Darle una galleta a Maxi
+      </button>
+      <div class="treats" id="treats">Maxi está esperando…</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="momentos">
+  <div class="wrap">
+    <div class="gallery-head">
+      <div class="eyebrow reveal">Álbum de recuerdos</div>
+      <h2 class="h2 reveal d1">Momentos <em>contigo</em></h2>
+      <p class="reveal d2">Toca cualquier foto para verla en grande.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lb" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 2l14 14M16 2 2 16" stroke="currentColor" stroke-width="1.8"/></svg></button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11 3 5 9l6 6" stroke="currentColor" stroke-width="1.8"/></svg></button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="m7 3 6 6-6 6" stroke="currentColor" stroke-width="1.8"/></svg></button>
+</div>
+
+<!-- ============ CAKE ============ -->
+<section class="cake-sec" id="pastel">
+  <div class="wrap">
+    <div class="eyebrow reveal">Llegó el momento</div>
+    <h2 class="h2 reveal d1">Pide un <em>deseo</em></h2>
+    <p class="reveal d2">Cinco velitas: una por cada una de tus hijas y una por Maxi. Toca cada vela para apagarla, o sóplalas todas de una vez.</p>
+    <div class="cake reveal d3">
+      <svg viewBox="0 0 360 300" id="cakeSvg">
+        <ellipse cx="180" cy="286" rx="160" ry="12" fill="rgba(46,31,22,.15)"/>
+        <rect x="20" y="270" width="320" height="12" rx="6" fill="#faf5ec"/>
+        <!-- bottom tier -->
+        <rect x="44" y="190" width="272" height="84" rx="12" fill="#7a5540"/>
+        <path d="M44 204c20 14 26-6 45 6s26 14 45 0 26-10 45 2 26 12 45-2 26-8 45 4 22 6 23-4V200a12 12 0 0 0-12-12H56a12 12 0 0 0-12 12z" fill="#f1e7d8"/>
+        <g fill="#c9a36a"><circle cx="72" cy="246" r="4"/><circle cx="118" cy="252" r="4"/><circle cx="164" cy="246" r="4"/><circle cx="210" cy="252" r="4"/><circle cx="256" cy="246" r="4"/><circle cx="296" cy="252" r="4"/></g>
+        <!-- top tier -->
+        <rect x="84" y="126" width="192" height="72" rx="12" fill="#b0825a"/>
+        <path d="M84 140c16 12 22-6 38 4s22 12 38 0 22-8 38 2 22 10 38-2 18-4 20-4v-2a12 12 0 0 0-12-12H96a12 12 0 0 0-12 12z" fill="#faf5ec"/>
+        <text x="180" y="182" text-anchor="middle" font-family="Pinyon Script" font-size="30" fill="#faf5ec">Yolo</text>
+      </svg>
+      <svg viewBox="0 0 360 300" style="position:absolute;inset:0" id="candles"></svg>
+    </div>
+    <div class="candle-labels" id="labels"></div>
+    <button class="btn-blow reveal" id="btnBlow">Soplar las velas</button>
+    <div class="final" id="final">
+      <h3>¡Feliz cumpleaños!</h3>
+      <p>Que todo lo que deseaste se cumpla, Yolo. Te queremos muchísimo, hoy y siempre.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="sig">Con amor, para Yolo Nava</div>
+  <small>Raúl · Tus hijas · Rodri · Maxi · Toda tu familia</small>
+</footer>
+
+<script>
+(() => {
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- confetti ---------- */
+const cv = $('#confetti'), cx = cv.getContext('2d');
+let parts = [], raf = null;
+const COLORS = ['#5a3d2b','#b0825a','#d6bf9f','#c9a36a','#f1e7d8','#7a5540','#e8dac5'];
+function size(){ cv.width = innerWidth * devicePixelRatio; cv.height = innerHeight * devicePixelRatio; }
+size(); addEventListener('resize', size);
+function burst(x = innerWidth / 2, y = innerHeight / 2, n = 160, spread = 1){
+  if (reduce) return;
+  for (let i = 0; i < n; i++){
+    const a = Math.random() * Math.PI * 2, v = (4 + Math.random() * 9) * spread;
+    parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 6, g: .22 + Math.random() * .1,
+      w: 6 + Math.random() * 7, h: 4 + Math.random() * 6, r: Math.random() * 6, vr: (Math.random() - .5) * .3,
+      c: COLORS[i % COLORS.length], life: 0, shape: Math.random() < .25 ? 'c' : 'r' });
+  }
+  if (!raf) loop();
+}
+function rain(n = 140){
+  if (reduce) return;
+  for (let i = 0; i < n; i++) parts.push({ x: Math.random() * innerWidth, y: -20 - Math.random() * innerHeight * .6,
+    vx: (Math.random() - .5) * 2, vy: 2 + Math.random() * 3, g: .04, w: 6 + Math.random() * 7, h: 4 + Math.random() * 6,
+    r: Math.random() * 6, vr: (Math.random() - .5) * .2, c: COLORS[i % COLORS.length], life: 0, shape: Math.random() < .25 ? 'c' : 'r' });
+  if (!raf) loop();
+}
+function loop(){
+  const d = devicePixelRatio;
+  cx.clearRect(0, 0, cv.width, cv.height);
+  parts = parts.filter(p => p.y < innerHeight + 40 && p.life < 600);
+  for (const p of parts){
+    p.vx *= .985; p.vy += p.g; p.x += p.vx; p.y += p.vy; p.r += p.vr; p.life++;
+    cx.save(); cx.translate(p.x * d, p.y * d); cx.rotate(p.r); cx.fillStyle = p.c;
+    if (p.shape === 'c'){ cx.beginPath(); cx.arc(0, 0, p.w * .4 * d, 0, 7); cx.fill(); }
+    else cx.fillRect(-p.w / 2 * d, -p.h / 2 * d, p.w * d, p.h * Math.abs(Math.cos(p.life * .1)) * d);
+    cx.restore();
+  }
+  raf = parts.length ? requestAnimationFrame(loop) : (cx.clearRect(0, 0, cv.width, cv.height), null);
+}
+
+/* ---------- intro ---------- */
+const intro = $('#intro'), env = $('#envelope');
+function start(){
+  document.body.classList.remove('locked');
+  document.body.classList.add('ready');
+  observe();
+}
+function openEnv(){
+  if (env.classList.contains('open')) return;
+  env.classList.add('open');
+  setTimeout(() => { burst(innerWidth / 2, innerHeight / 2, 220, 1.1); intro.classList.add('gone'); start(); }, 1300);
+}
+if (new URLSearchParams(location.search).has('open')){ intro.remove(); start(); }
+else {
+  env.addEventListener('click', openEnv);
+  env.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openEnv(); } });
+}
+
+/* ---------- marquee ---------- */
+const words = ['Mamá de cuatro','Reina del gym','La favorita de Maxi','El amor de Raúl','Siempre presente','Viajera','Fuerte y hermosa','Nuestra Yolo'];
+$('#marq').innerHTML = [...words, ...words].map(w => `<span>${w}</span>`).join('');
+
+/* ---------- reveal + counters ---------- */
+function observe(){
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    const c = e.target.querySelector('[data-count]');
+    if (c) count(c);
+    io.unobserve(e.target);
+  }), { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+function count(el){
+  const to = +el.dataset.count, t0 = performance.now(), dur = to > 10 ? 1800 : 900;
+  (function tick(t){
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(to * e);
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+/* ---------- gym ---------- */
+const WISHES = [
+  'Salud de hierro 💪','Mucha energía para todo','Risas hasta que duela la panza','Viajes nuevos por el mundo',
+  'Paz y calma en el corazón','Récords personales en el gym','Cafecitos con quien más quieres','Abrazos de tus cuatro hijas',
+  'Muchos paseos con Maxi','¡Un año espectacular!'
+];
+const repsEl = $('#reps'), wish = $('#wish'), db = $('#dumbbell');
+repsEl.innerHTML = WISHES.map(() => '<i></i>').join('');
+let rep = 0, busy = false;
+$('#btnLift').addEventListener('click', e => {
+  if (busy) return;
+  if (rep >= WISHES.length){
+    rep = 0; repsEl.querySelectorAll('i').forEach(i => i.classList.remove('on'));
+    wish.textContent = 'Nueva serie. ¡Vamos otra vez!'; e.currentTarget.textContent = 'Levantar 💪'; return;
+  }
+  busy = true; db.classList.add('up');
+  setTimeout(() => {
+    db.classList.remove('up');
+    repsEl.children[rep].classList.add('on');
+    wish.classList.remove('pop'); void wish.offsetWidth; wish.classList.add('pop');
+    wish.textContent = `Rep ${rep + 1}: ${WISHES[rep]}`;
+    rep++;
+    if (rep === WISHES.length){
+      wish.textContent = '¡Serie completa! Todos estos deseos son para ti.';
+      $('#btnLift').textContent = 'Otra serie';
+      const r = $('#btnLift').getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 140);
+    }
+    setTimeout(() => busy = false, 180);
+  }, 420);
+});
+
+/* ---------- maxi ---------- */
+const paws = $('#paws');
+const PAW = '<svg viewBox="0 0 32 32" fill="currentColor"><ellipse cx="16" cy="21" rx="7.5" ry="6.5"/><ellipse cx="7" cy="13" rx="3.2" ry="4.2"/><ellipse cx="12.5" cy="7" rx="3.2" ry="4.2"/><ellipse cx="19.5" cy="7" rx="3.2" ry="4.2"/><ellipse cx="25" cy="13" rx="3.2" ry="4.2"/></svg>';
+for (let i = 0; i < 14; i++){
+  const p = document.createElement('div'); p.className = 'paw'; p.innerHTML = PAW;
+  const t = i / 13;
+  p.style.left = (4 + t * 90) + '%';
+  p.style.top = (72 - Math.sin(t * Math.PI) * 50 + (i % 2 ? 6 : -6)) + '%';
+  p.style.transform = `rotate(${80 + (i % 2 ? 12 : -12) - Math.cos(t * Math.PI) * 40}deg)`;
+  p.style.animationDelay = (i * .35) + 's';
+  paws.appendChild(p);
+}
+const pup = $('#pup'), bubble = $('#bubble'), treatsEl = $('#treats');
+const BARKS = ['¡Guau!','¡Feliz cumple, Yolo!','¡Más galletas!','¡Te quiero! 🐾','¡Guau guau!','¡Vamos de paseo!'];
+let treats = 0, bt;
+$('#btnTreat').addEventListener('click', e => {
+  treats++;
+  const b = document.createElement('div'); b.className = 'bone';
+  b.innerHTML = '<svg viewBox="0 0 34 18" fill="currentColor"><path d="M6 1a5 5 0 0 1 4.6 3h12.8A5 5 0 1 1 28 11a5 5 0 1 1-4.6 3H10.6A5 5 0 1 1 6 11a5 5 0 1 1 0-10z"/></svg>';
+  const from = e.currentTarget.getBoundingClientRect(), to = pup.getBoundingClientRect();
+  b.style.left = from.left + from.width / 2 - 17 + 'px'; b.style.top = from.top + 'px';
+  document.body.appendChild(b);
+  b.animate([{ transform: 'translate(0,0) rotate(0)' },
+    { transform: `translate(${(to.left + to.width / 2 - from.left - from.width / 2) / 2}px,${to.top - from.top - 60}px) rotate(200deg)`, offset: .5 },
+    { transform: `translate(${to.left + to.width / 2 - from.left - from.width / 2}px,${to.top + to.height * .55 - from.top}px) rotate(400deg) scale(.4)`, opacity: 0 }],
+    { duration: reduce ? 1 : 700, easing: 'ease-out' }).onfinish = () => b.remove();
+  setTimeout(() => {
+    pup.classList.add('happy');
+    bubble.textContent = BARKS[(treats - 1) % BARKS.length];
+    bubble.classList.add('show');
+    treatsEl.textContent = treats === 1 ? 'Maxi se comió 1 galleta' : `Maxi se comió ${treats} galletas`;
+    clearTimeout(bt); bt = setTimeout(() => { bubble.classList.remove('show'); pup.classList.remove('happy'); }, 2200);
+  }, reduce ? 0 : 650);
+});
+
+/* ---------- gallery ---------- */
+const PHOTOS = [
+  ['16.jpg','Mis cuatro niñas'],['2.jpg','Con un tigre, porque sí'],['3.jpg','Noches de verano'],
+  ['18.jpg','Elegancia pura'],['7.jpg','Rumbo a la aventura'],['8.jpg','Días de playa'],
+  ['6.jpg','Las mejores risas'],['12.jpg','Noche de gala con Raúl'],['5.jpg','Tailandia'],
+  ['17.jpg','Rock and roll'],['10.jpg','Todas juntas'],['11.jpg','Tardes bonitas'],
+  ['9.jpg','En primera fila'],['14.jpg','Pizza en familia'],['13.jpg','Sol, arena y Raúl'],
+  ['15.jpg','Raíces'],['4.jpg','Bajo el papel picado'],['1.jpg','Así, sonriendo'],['19.jpg','Cielo azul']
+];
+const mas = $('#masonry');
+mas.innerHTML = PHOTOS.map(([f, c], i) =>
+  `<button class="pol reveal" data-i="${i}"><img src="img/${f}" alt="${c}" loading="lazy"><span>${c}</span></button>`).join('');
+const lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+let cur = 0;
+function show(i){ cur = (i + PHOTOS.length) % PHOTOS.length; lbImg.src = 'img/' + PHOTOS[cur][0]; lbImg.alt = PHOTOS[cur][1]; lbCap.textContent = PHOTOS[cur][1]; }
+function openLb(i){ show(i); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+function closeLb(){ lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+mas.addEventListener('click', e => { const b = e.target.closest('.pol'); if (b) openLb(+b.dataset.i); });
+$('#lbPrev').onclick = () => show(cur - 1);
+$('#lbNext').onclick = () => show(cur + 1);
+$('#lbClose').onclick = closeLb;
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') show(cur - 1);
+  if (e.key === 'ArrowRight') show(cur + 1);
+});
+let tx = 0;
+lb.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
+
+/* ---------- cake ---------- */
+const NAMES = ['Hija 1','Hija 2','Hija 3','Hija 4','Maxi'];
+const XS = [112, 146, 180, 214, 248], COLS = ['#f1e7d8','#d6bf9f','#faf5ec','#d6bf9f','#c9a36a'];
+const cs = $('#candles'), labels = $('#labels');
+cs.innerHTML = XS.map((x, i) => `
+  <g class="candle" data-i="${i}">
+    <rect x="${x - 14}" y="44" width="28" height="92" fill="transparent"/>
+    <rect x="${x - 5}" y="${i === 2 ? 76 : 84}" width="10" height="${i === 2 ? 52 : 44}" rx="3" fill="${COLS[i]}" stroke="rgba(90,61,43,.25)"/>
+    <path d="M${x - 5} ${i === 2 ? 88 : 96}l10-6M${x - 5} ${i === 2 ? 102 : 110}l10-6M${x - 5} ${i === 2 ? 116 : 124}l10-6" stroke="#b0825a" stroke-width="2"/>
+    <line x1="${x}" y1="${i === 2 ? 76 : 84}" x2="${x}" y2="${i === 2 ? 70 : 78}" stroke="#2e1f16" stroke-width="1.5"/>
+    <g class="flame"><path d="M${x} ${i === 2 ? 46 : 54}c7 9 8 14 0 22-8-8-7-13 0-22z" fill="#f2b84b"/><path d="M${x} ${i === 2 ? 56 : 64}c3 4 4 7 0 11-4-4-3-7 0-11z" fill="#fff4d6"/></g>
+    <path class="smoke" d="M${x} ${i === 2 ? 66 : 74}c-4-6 4-10 0-16s4-10 0-14" stroke="rgba(90,61,43,.4)" stroke-width="2" fill="none"/>
+  </g>`).join('');
+labels.innerHTML = NAMES.map(n => `<span>${n}</span>`).join('');
+let out = 0;
+function blow(i){
+  const g = cs.querySelector(`.candle[data-i="${i}"]`);
+  if (g.classList.contains('out')) return;
+  g.classList.add('out'); labels.children[i].classList.add('done'); out++;
+  if (out === XS.length) celebrate();
+}
+function celebrate(){
+  $('#btnBlow').textContent = 'Volver a encender';
+  $('#final').classList.add('show');
+  burst(innerWidth / 2, innerHeight * .55, 240, 1.2); setTimeout(() => rain(160), 400);
+}
+cs.addEventListener('click', e => { const g = e.target.closest('.candle'); if (g) blow(+g.dataset.i); });
+$('#btnBlow').addEventListener('click', () => {
+  if (out === XS.length){
+    cs.querySelectorAll('.candle').forEach(g => g.classList.remove('out'));
+    [...labels.children].forEach(s => s.classList.remove('done'));
+    out = 0; $('#btnBlow').textContent = 'Soplar las velas'; $('#final').classList.remove('show'); return;
+  }
+  XS.forEach((_, i) => setTimeout(() => blow(i), i * 160));
+});
+})();
+</script>
+</body>
+</html>
