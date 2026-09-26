@@ -520,7 +520,7 @@ footer small{display:block;margin-top:.8rem;font-size:.72rem;letter-spacing:.26e
   <div class="wrap">
     <div class="eyebrow reveal">Llegó el momento</div>
     <h2 class="h2 reveal d1">Pide un <em>deseo</em></h2>
-    <p class="reveal d2">Cinco velitas: una por cada una de tus hijas y una por Maxi. Toca cada vela para apagarla, o sóplalas todas de una vez.</p>
+    <p class="reveal d2">Cinco velitas: una por Regi, Pame, Vivi y Sofi, y una por Maxi. Toca cada vela para apagarla, o sóplalas todas de una vez.</p>
     <div class="cake reveal d3">
       <svg viewBox="0 0 360 300" id="cakeSvg">
         <ellipse cx="180" cy="286" rx="160" ry="12" fill="rgba(46,31,22,.15)"/>
@@ -733,7 +733,7 @@ lb.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: tru
 lb.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); });
 
 /* ---------- cake ---------- */
-const NAMES = ['Hija 1','Hija 2','Hija 3','Hija 4','Maxi'];
+const NAMES = ['Regi','Pame','Vivi','Sofi','Maxi'];
 const XS = [112, 146, 180, 214, 248], COLS = ['#f1e7d8','#d6bf9f','#faf5ec','#d6bf9f','#c9a36a'];
 const cs = $('#candles'), labels = $('#labels');
 cs.innerHTML = XS.map((x, i) => `
